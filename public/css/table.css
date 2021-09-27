@@ -1,0 +1,42 @@
+/* header ================================ */
+header {
+    background-color: #2d3133;
+    height: 50px;
+}
+
+.login-wrapper {
+    float: right;
+    display: block;
+    padding: 8px 24px 8px 24px;
+}
+
+.login-wrapper a {
+    color: #f6faff;
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+/* body ================================ */
+
+.container {
+    margin-top: 50px;
+}
+
+.table-container {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.table-head {
+    background-color: darkgray;
+    color: white;
+
+    height: 50px;
+}
+
+.table-head p {
+    float: left;
+    text-align: center;
+    font-size: 25px;
+}
