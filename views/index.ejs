@@ -8,11 +8,33 @@
 </head>
 <body>
 <header>
-    <div class="login-wrapper">
-        <a href="/login">管理画面</a>
+    <div class="home-wrapper">
+        <a href="/index">Home</a>
     </div>
 </header>
+
 <div class="container">
+    <div class="container-header">
+        <h1>テーブル一覧</h1>
+        <a href="/table/create" class="new-button">新規作成</a>
+    </div>
+    
+    <div class="table-head">
+        <span class="id-column">id</span>
+        <span class="name-column">名前</span>
+        <span class="description-column">概要</span>
+        <span class="link-column" >リンク</span>
+    </div>
+
+    <% tables.forEach((table) => { %>
+        <div class="table-body">
+            <span class="id-column"><%=table.id %></span>
+            <span class="name-column"><%=table.name %></span>
+            <span class="description-column"><%=table.description %></span>
+            <a href="/table/<%=table.id %>" class="link-column">link</a>
+        </div>
+    <% }) %>
 </div>
+
 </body>
 </html>
