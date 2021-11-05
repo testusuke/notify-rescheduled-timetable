@@ -4,6 +4,7 @@ const PORT = 3000;
 const express = require('express');
 const mysql = require('mysql');
 const e = require("express");
+const moment = require("moment");
 // const session = require('express-session');
 const app = express();
 
@@ -134,6 +135,12 @@ app.get('/table/content/create/:id', (req, res) => {
  */
 app.post('/table/content/create/:id', (req, res) => {
     console.log('receive create table request');
+    //  exception
+    if (moment(req.body.date, "YYYY/MM/DD", true).isValid() === false){
+        res.redirect('/table/view/' + req.params.id);
+        return
+    }
+
     connection.query(
         'INSERT INTO table_data (table_id, name, description, date) VALUES (?, ?, ?, ?)',
         [req.params.id, req.body.name, req.body.description, req.body.date],
