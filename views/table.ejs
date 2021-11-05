@@ -8,23 +8,32 @@
 </head>
 <body>
 <header>
-    <div class="login-wrapper">
-        <a href="/login">管理画面</a>
+    <div class="home-wrapper">
+        <a href="/index">Home</a>
     </div>
 </header>
 <div class="container">
+    <div class="container-header">
+        <h1>一覧</h1>
+        <a href="/table/content/create/<%=tableId%>" class="new-button">新規作成</a>
+    </div>
     <div class="table-container">
-        <div class="table-head">
-            <p>Id</p>
-            <p>Name</p>
-            <p>Description</p>
-            <p>Date</p>
-        </div>
-        <div class="table-list">
-            <ul>
-                <li>TEST</li>
-            </ul>
-        </div>
+        <ul class="table-body">
+            <% contents.forEach((content) => { %>
+            <li>
+                <div class="content">
+                    <h2 class="name"><%= content.name%></h2>
+                    <p class="description"><%= content.description%></p>
+                    <p class="date">Date: <%= content.date%></p>
+                </div>
+                <div class="content-remove">
+                    <form action="/table/content/delete/<%= content.id%>" method="post">
+                        <input type="submit" value="削除">
+                    </form>
+                </div>
+            </li>
+            <% }) %>
+        </ul>
     </div>
 </div>
 </body>

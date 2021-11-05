@@ -22,20 +22,37 @@ const connection = mysql.createConnection({
 connection.connect((err) => {
     if (err) throw err;
     console.log('success connect db');
-    const sql = "create table if not exists tables\n" +
+    const listSql = "create table if not exists table_list\n" +
         "(\n" +
         "\tid int auto_increment,\n" +
-        "\tname VARCHAR(64) null,\n" +
-        "\tdescription VARCHAR(128) null,\n" +
+        "\tname VARCHAR(256) null,\n" +
+        "\tdescription TEXT null,\n" +
         "\tconstraint tables_pk\n" +
+        "\t\tprimary key (id)\n" +
+        ")";
+    const dataSql = "create table if not exists table_data\n" +
+        "(\n" +
+        "\tid int auto_increment,\n" +
+        "\ttable_id int not null,\n" +
+        "\tname VARCHAR(256) null,\n" +
+        "\tdescription TEXT null,\n" +
+        "\tdate DATE null,\n" +
+        "\tconstraint table_data_pk\n" +
         "\t\tprimary key (id)\n" +
         ")";
     //  create table
     connection.query(
-        sql,
+        listSql,
         (err, result) => {
             if (err) throw err
-            console.log('success create table');
+            console.log('success create `table_list` table');
+        }
+    );
+    connection.query(
+        dataSql,
+        (err, result) => {
+            if (err) throw err
+            console.log('success create `table_data` table');
         }
     );
 });
@@ -47,7 +64,7 @@ app.get('/', (req, res) => {
 
 app.get('/index', (req, res) => {
     connection.query(
-        'SELECT * FROM tables',
+        'SELECT * FROM table_list',
         (error, results) => {
             console.log(results);
             res.render('index.ejs', {tables: results});
@@ -57,7 +74,14 @@ app.get('/index', (req, res) => {
 
 // TODO parameterにidを追加して、複数のtableを表示する
 app.get('/table/view/:id', (req, res) => {
-    res.render('table.ejs');
+    connection.query(
+        'SELECT * FROM table_data WHERE table_id=? ORDER BY date ASC',
+        [req.params.id],
+        (error, results) => {
+            console.log(results);
+            res.render('table.ejs', {contents: results, tableId: req.params.id});
+        }
+    );
 });
 
 /**
@@ -73,7 +97,7 @@ app.get('/table/create', (req, res) => {
 app.post('/table/create', (req, res) => {
     console.log('receive create table request');
     connection.query(
-        'INSERT INTO tables (name, description) VALUES (?, ?)',
+        'INSERT INTO table_list (name, description) VALUES (?, ?)',
         [req.body.name, req.body.description],
         (error, results) => {
             if (error) throw error
@@ -87,11 +111,50 @@ app.post('/table/create', (req, res) => {
  */
 app.post('/table/delete/:id', (req, res) => {
     connection.query(
-        'DELETE FROM tables WHERE id=?',
+        'DELETE FROM table_list WHERE id=?',
         [req.params.id],
         (error, results) => {
             if (error) throw error
             res.redirect('/index');
+        }
+    );
+    //  TODO low priority: add process of removing table data.
+});
+
+
+/**
+ * @description Creating Content Menu
+ */
+app.get('/table/content/create/:id', (req, res) => {
+    res.render('content-creator.ejs', {tableId: req.params.id});
+});
+
+/**
+ * @description Create Column
+ */
+app.post('/table/content/create/:id', (req, res) => {
+    console.log('receive create table request');
+    connection.query(
+        'INSERT INTO table_data (table_id, name, description, date) VALUES (?, ?, ?, ?)',
+        [req.params.id, req.body.name, req.body.description, req.body.date],
+        (error, results) => {
+            if (error) throw error
+            res.redirect('/table/view/' + req.params.id);
+        }
+    );
+});
+
+/**
+ * @description Delete Table
+ * @param id[int] content id
+ */
+app.post('/table/content/delete/:id', (req, res) => {
+    connection.query(
+        'DELETE FROM table_data WHERE id=?',
+        [req.params.id],
+        (error, results) => {
+            if (error) throw error
+            res.redirect('/table/view/' + req.params.id);
         }
     );
 });
