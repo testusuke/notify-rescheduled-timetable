@@ -1,0 +1,104 @@
+/* header ================================ */
+header {
+    background-color: #2d3133;
+    height: 50px;
+}
+
+.home-wrapper {
+    float: right;
+    display: block;
+    padding: 8px 24px 8px 24px;
+}
+
+.home-wrapper a {
+    color: #f6faff;
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+/* container ================================ */
+.container {
+    width: 1200px;
+    margin: 40px auto 0 auto;
+}
+
+.container-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.container-header .new-button {
+    background: #80bcff;
+    border-radius: 30px;
+    font-size: 14px;
+    width: 100px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    color: #ffffff;
+    border: 2px solid #80bcff;
+    margin-bottom: 15px;
+}
+
+.container-header h1 {
+    color: black;
+    font-size: 24px;
+}
+
+.table-head {
+    background-color: #2d3133;
+    color: white;
+    font-size: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    display: flex;
+}
+
+.table-head .id-column {
+    width: 30px;
+    text-align: center;
+    border-right: 1px solid whitesmoke;
+}
+
+.table-head .name-column {
+    width: 150px;
+    text-align: center;
+    border-right: 1px solid whitesmoke;
+}
+
+.table-head .description-column {
+    width: 950px;
+    padding-left: 10px;
+    border-right: 1px solid whitesmoke;
+}
+
+.table-head .link-column {
+    width: 70px;
+    text-align: center;
+}
+
+
+.table-body {
+    background-color: lightgray;
+    color: black;
+    display: flex;
+}
+
+.table-body .id-column {
+    width: 30px;
+    text-align: center;
+}
+
+.table-body .name-column {
+    width: 150px;
+}
+
+.table-body .description-column {
+    width: 950px;
+}
+.table-body a:link a:hover a:visited a:active {
+    color: black;
+    width: 70px;
+}
+

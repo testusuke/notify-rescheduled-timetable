@@ -1,0 +1,112 @@
+/* header ================================ */
+header {
+    background-color: #2d3133;
+    height: 50px;
+}
+
+.home-wrapper {
+    float: right;
+    display: flex;
+    padding: 8px 24px 8px 24px;
+}
+
+.home-wrapper a {
+    color: #f6faff;
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+/* body ================================ */
+
+.container {
+    width: 1200px;
+    margin: 40px auto 0 auto;
+}
+
+.container-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.container-header .new-button {
+    background: #80bcff;
+    border-radius: 30px;
+    font-size: 14px;
+    width: 100px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    color: #ffffff;
+    border: 2px solid #80bcff;
+    margin-bottom: 15px;
+}
+
+.container-header h1 {
+    color: black;
+    font-size: 24px;
+}
+
+
+.table-container {
+    background-color: #ffffff;
+}
+
+
+.table-body {
+    background-color: #2d3133;
+}
+
+.table-body li {
+    height: 150px;
+    border: 2px solid black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.table-body .name {
+    font-size: 30px;
+    color: white;
+}
+
+.table-body .description {
+    font-size: 24px;
+    color: #f6faff;
+}
+
+.table-body .date {
+    font-size: 20px;
+    color: red;
+}
+
+.content {
+    /*display: flex;*/
+}
+
+.content-remove{
+    display: flex;
+}
+
+.content-remove form {
+    width: 60px;
+    text-align: center;
+}
+
+.content-remove form input {
+    font-size: 16px;
+    color: #bac6d3;
+    cursor: pointer;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding: 0;
+    border: none;
+    outline: none;
+    background: transparent;
+}
+
+.item-menu form input:hover {
+    color: #ff7f8c;
+    transition: all 0.3s ease;
+}

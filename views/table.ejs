@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <title>Top</title>
+    <link rel="stylesheet" href="/css/default.css">
+    <link rel="stylesheet" href="/css/table.css">
+</head>
+<body>
+<header>
+    <div class="home-wrapper">
+        <a href="/index">Home</a>
+    </div>
+</header>
+<div class="container">
+    <div class="container-header">
+        <h1>一覧</h1>
+        <a href="/table/content/create/<%=tableId%>" class="new-button">新規作成</a>
+    </div>
+    <div class="table-container">
+        <ul class="table-body">
+            <% contents.forEach((content) => { %>
+            <li>
+                <div class="content">
+                    <h2 class="name"><%= content.name%></h2>
+                    <p class="description"><%= content.description%></p>
+                    <p class="date">Date: <%= content.date%></p>
+                </div>
+                <div class="content-remove">
+                    <form action="/table/content/delete/<%=tableId%>" method="post">
+                        <input type="hidden" name="id" value="<%= content.id%>">
+                        <input type="submit" value="削除">
+                    </form>
+                </div>
+            </li>
+            <% }) %>
+        </ul>
+    </div>
+</div>
+</body>
+</html>
