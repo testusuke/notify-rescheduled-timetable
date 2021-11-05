@@ -27,7 +27,8 @@
                     <p class="date">Date: <%= content.date%></p>
                 </div>
                 <div class="content-remove">
-                    <form action="/table/content/delete/<%= content.id%>" method="post">
+                    <form action="/table/content/delete/<%=tableId%>" method="post">
+                        <input type="hidden" name="id" value="<%= content.id%>">
                         <input type="submit" value="削除">
                     </form>
                 </div>

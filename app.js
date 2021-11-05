@@ -134,13 +134,14 @@ app.get('/table/content/create/:id', (req, res) => {
  * @description Create Column
  */
 app.post('/table/content/create/:id', (req, res) => {
-    console.log('receive create table request');
+    console.log('receive create column request');
     //  exception
+    console.log(moment(req.body.date, "YYYY/MM/DD", true).isValid());
     if (moment(req.body.date, "YYYY/MM/DD", true).isValid() === false){
         res.redirect('/table/view/' + req.params.id);
         return
     }
-
+    console.log("clear");
     connection.query(
         'INSERT INTO table_data (table_id, name, description, date) VALUES (?, ?, ?, ?)',
         [req.params.id, req.body.name, req.body.description, req.body.date],
@@ -158,7 +159,7 @@ app.post('/table/content/create/:id', (req, res) => {
 app.post('/table/content/delete/:id', (req, res) => {
     connection.query(
         'DELETE FROM table_data WHERE id=?',
-        [req.params.id],
+        [req.body.id],
         (error, results) => {
             if (error) throw error
             res.redirect('/table/view/' + req.params.id);
