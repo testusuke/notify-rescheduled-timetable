@@ -16,6 +16,6 @@
     "express-session": "^1.17.2",
     "moment": "^2.29.1",
     "mysql": "^2.18.1",
-    "passport": "^0.5.0"
+    "passport": "^0.5.1"
   }
 }
